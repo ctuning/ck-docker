@@ -1,0 +1,10 @@
+{
+  "data_uid": "18bb3d4130a4aaf9", 
+  "data_name": "ck-docker", 
+  "dict": {
+    "url": "git@github.com:dividiti/ck-docker.git", 
+    "shared": "git"
+  }, 
+  "data_alias": "ck-docker", 
+  "data_uoa": "ck-docker"
+}
