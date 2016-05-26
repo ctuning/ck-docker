@@ -6,18 +6,19 @@ RUN apt-get update && apt-get install -y \
     python-all \
     git
 
-# Install Collective Knowledge (CK).
-RUN mkdir -p $HOME/CK
-ENV CK_ROOT $HOME/CK/ck
+# Install the core Collective Knowledge (CK) module.
+ENV CK_ROOT=$HOME/CK/ck CK_TOOLS=$HOME/CK_TOOLS PATH=$CK_ROOT/bin:$PATH
 
-RUN git clone https://github.com/ctuning/ck.git $CK_ROOT
-RUN cd $CK_ROOT && python setup.py install
-RUN python -c "import ck.kernel as ck"
-
+RUN mkdir -p $HOME/CK && git clone https://github.com/ctuning/ck.git $CK_ROOT
 RUN mkdir -p $HOME/CK_TOOLS
-ENV CK_TOOLS $HOME/CK_TOOLS
 
-ENV PATH $CK_ROOT/bin:$PATH
+RUN cd $CK_ROOT && python setup.py install && python -c "import ck.kernel as ck"
 
-# Print the version of CK.
-CMD ["ck", "version"]
+# Install other CK modules.
+RUN ck pull repo:ck-web
+
+# Open the standard CK port.
+EXPOSE 3344
+
+# Start the web server.
+CMD ["ck", "start", "web"]
