@@ -18,7 +18,6 @@ This message shows that your installation appears to be working correctly.
 To build a CK Docker image named `ctuning/ck-ubuntu-16.04` from a `Dockerfile` in `docker/ubuntu-16.04`, run:
 
 ```
-$ 
 $ docker build -t ctuning/ck-ubuntu-16.04 docker/ubuntu-16.04
 ```
 from the directory containing this `README.md`.
@@ -27,7 +26,7 @@ from the directory containing this `README.md`.
 
 ### Local web service
 
-The CK web service can be run locally and accessed at `http://localhost:3344/' as follows:
+The CK web service can be run locally and accessed at `http://localhost:3344/` as follows:
 
 ```
 $ docker run --rm -it ctuning/ck-ubuntu-16.04
