@@ -7,14 +7,13 @@ RUN apt-get update && apt-get install -y \
     git
 
 # Install the core Collective Knowledge (CK) module.
-ENV CK_HOME=/root/CK \
-    CK_TOOLS=/root/CK_TOOLS \
-    CK_ROOT=${CK_HOME}/ck-core \
+ENV CK_ROOT=/CK \
+    CK_REPOS=/CK_REPOS \
+    CK_TOOLS=/CK_TOOLS \
     PATH=${CK_ROOT}/bin:${PATH}
 
-RUN mkdir -p ${CK_HOME} && git clone https://github.com/ctuning/ck.git ${CK_ROOT}
-RUN mkdir -p ${CK_TOOLS}
-
+RUN mkdir -p ${CK_ROOT} ${CK_REPOS} ${CK_TOOLS}
+RUN git clone https://github.com/ctuning/ck.git ${CK_ROOT}
 RUN cd ${CK_ROOT} && python setup.py install && python -c "import ck.kernel as ck"
 
 # Install other CK modules.
