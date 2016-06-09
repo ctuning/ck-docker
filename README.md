@@ -43,19 +43,19 @@ Installation
 Usage
 =====
 
-* List existing Docker images in CK format:
+# List existing Docker images in CK:
 
 ```
  $ ck list docker
 ```
 
-* Build a given image locally (for example, to read CK-based interactive article):
+# Build a given image locally (for example, to read CK-based interactive article):
 
 ```
  $ ck build docker:ck-ubuntu-16.04-interactive-report
 ```
 
-* Run Docker image (for example, interactive paper)
+# Run Docker image (for example, interactive paper)
 
 ```
  $ ck run docker:ck-ubuntu-16.04-interactive-report
@@ -72,25 +72,55 @@ You can also start a CK dashboard simply via:
  $ firefox http://localhost:3344
 ```
 
-* Participate in GCC crowd-tuning:
+# Participate in GCC crowd-tuning:
 
 ```
  $ ck build docker:ck-ubuntu-16.04-crowdtune-gcc
  $ ck run docker:ck-ubuntu-16.04-crowdtune-gcc
 ```
 
-* Use CK as a remote web service
+# Use CK as a remote web service
 
 ```
  $ ck build docker:ck-ubuntu-16.04
  $ ck run docker:ck-ubuntu-16.04
 ```
 
-Customize CK server host and ports:
+# Customize CK server host and ports:
 
 ```
-$ export WFE_HOST=123.456.0.78 WFE_PORT=9999 CK_PORT=3344
-$ ck run docker:ck-ubuntu-16.04 --cmd=" -p ${WFE_PORT}:${CK_PORT} --env WFE_HOST=${WFE_HOST} --env WFE_PORT=${WFE_PORT} --env CK_PORT=${CK_PORT} --env CK_PORT=${CK_PORT}"
+ $ export WFE_HOST=123.456.0.78 WFE_PORT=9999 CK_PORT=3344
+ $ ck run docker:ck-ubuntu-16.04 --cmd=" -p ${WFE_PORT}:${CK_PORT} --env WFE_HOST=${WFE_HOST} --env WFE_PORT=${WFE_PORT} --env CK_PORT=${CK_PORT} --env CK_PORT=${CK_PORT}"
 
 Starting CK web service on 172.17.0.2:3344 (configured for access at 123.456.0.78:9999) ...
 ```
+
+# Create your own CK-based Docker image
+
+Select the most close Docker image in CK and copy it to a new CK entry:
+
+```
+ $ ck cp docker:ck-ubuntu-16.04-interactive-report :my-new-image
+```
+
+Find its path:
+
+```
+ $ ck find docker:my-new-image
+```
+
+Edit Dockerfile and .cm/meta.json in this directory.
+
+When ready, build your image
+
+```
+ $ ck build docker:my-new-image
+```
+
+and then run it
+
+```
+ $ ck run docker:my-new-image
+```
+
+That's all!
