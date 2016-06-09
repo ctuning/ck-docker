@@ -1,0 +1,8 @@
+{
+  "cmd": {
+    "default": {
+      "build": "-t $#CK_DOCKER_ORGANIZATION#$/$#CK_DOCKER_NAME#$ $#CK_PATH#$",
+      "run": "--rm -it $#CK_DOCKER_ORGANIZATION#$/$#CK_DOCKER_NAME#$"
+    }
+  }
+}

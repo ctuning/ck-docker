@@ -1,4 +1,8 @@
-# Collective Knowledge repository for Docker images
+# Automating creation and execution of Docker images via Collectiv Knowledge Framework
+
+
+
+
 
 ## Install Docker
 
@@ -11,6 +15,10 @@ This message shows that your installation appears to be working correctly.
 ...
 ```
 **NB:** To run Docker without `sudo` on Linux, create a `docker` user group (e.g. see instructions for Ubuntu [here](https://docs.docker.com/engine/installation/linux/ubuntulinux/#create-a-docker-group).
+
+
+
+
 
 
 ## Build a CK Docker image

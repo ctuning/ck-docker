@@ -1,0 +1,4 @@
+*.pyc
+*tmp/
+*.ipynb_checkpoints/
+program/pluton-blas-*/tmp-ck-*
