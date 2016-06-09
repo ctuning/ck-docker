@@ -8,7 +8,7 @@ beta, relatively stable
 Prerequisites
 =============
 
-## Install Docker
+### Install Docker
 
 To install Docker, please refer to the official 
 [Docker installation instructions](https://docs.docker.com/engine/installation/). 
@@ -43,19 +43,19 @@ Installation
 Usage
 =====
 
-# List existing Docker images in CK:
+### List existing Docker images in CK:
 
 ```
  $ ck list docker
 ```
 
-# Build a given image locally (for example, to read CK-based interactive article):
+### Build a given image locally (for example, to read CK-based interactive article):
 
 ```
  $ ck build docker:ck-ubuntu-16.04-interactive-report
 ```
 
-# Run Docker image (for example, interactive paper)
+### Run Docker image (for example, interactive paper)
 
 ```
  $ ck run docker:ck-ubuntu-16.04-interactive-report
@@ -72,21 +72,21 @@ You can also start a CK dashboard simply via:
  $ firefox http://localhost:3344
 ```
 
-# Participate in GCC crowd-tuning:
+### Participate in GCC crowd-tuning:
 
 ```
  $ ck build docker:ck-ubuntu-16.04-crowdtune-gcc
  $ ck run docker:ck-ubuntu-16.04-crowdtune-gcc
 ```
 
-# Use CK as a remote web service
+### Use CK as a remote web service
 
 ```
  $ ck build docker:ck-ubuntu-16.04
  $ ck run docker:ck-ubuntu-16.04
 ```
 
-# Customize CK server host and ports:
+### Customize CK server host and ports:
 
 ```
  $ export WFE_HOST=123.456.0.78 WFE_PORT=9999 CK_PORT=3344
@@ -95,7 +95,7 @@ You can also start a CK dashboard simply via:
 Starting CK web service on 172.17.0.2:3344 (configured for access at 123.456.0.78:9999) ...
 ```
 
-# Create your own CK-based Docker image
+### Create your own CK-based Docker image
 
 Select the most close Docker image in CK and copy it to a new CK entry:
 
