@@ -1,12 +1,18 @@
-# Automating creation and execution of Docker images via Collectiv Knowledge Framework
+Automating creation and execution of Docker images via CK
+=========================================================
 
+Status
+======
+beta, relatively stable
 
-
-
+Prerequisites
+=============
 
 ## Install Docker
 
-To install Docker, please refer to the official [Docker installation instructions](https://docs.docker.com/engine/installation/). Please make sure that you can run the "hello-world" example:
+To install Docker, please refer to the official 
+[Docker installation instructions](https://docs.docker.com/engine/installation/). 
+Please make sure that you can run the "hello-world" example:
 ```
 $ docker run hello-world
 
@@ -14,42 +20,77 @@ Hello from Docker.
 This message shows that your installation appears to be working correctly.
 ...
 ```
-**NB:** To run Docker without `sudo` on Linux, create a `docker` user group (e.g. see instructions for Ubuntu [here](https://docs.docker.com/engine/installation/linux/ubuntulinux/#create-a-docker-group).
+**NB:** To run Docker without `sudo` on Linux, create a `docker` user group 
+(e.g. see instructions for Ubuntu [here](https://docs.docker.com/engine/installation/linux/ubuntulinux/#create-a-docker-group).
 
 
+Authors
+=======
 
+* Anton Lokhmotov, dividiti (UK)
+* Grigori Fursin, cTuning foundaton (France)
 
+License
+=======
+* BSD, 3-clause
 
-
-## Build a CK Docker image
-
-To build a CK Docker image named `ctuning/ck-ubuntu-16.04` from a `Dockerfile` in `docker/ubuntu-16.04`, run:
-
+Installation
+============
 ```
-$ docker build -t ctuning/ck-ubuntu-16.04 docker/ubuntu-16.04
-```
-from the directory containing this `README.md`.
-
-## Run a CK Docker image
-
-### Local web service
-
-The CK web service can be run locally and accessed at `http://localhost:3344/` as follows:
-
-```
-$ docker run --rm -it ctuning/ck-ubuntu-16.04
+ $ ck pull repo:ck-docker
 ```
 
-### Remote web service
+Usage
+=====
 
-The CK web service can be run on a remote server (at an address `${WFE_HOST}` and with an opened port `${WFE_PORT}`) and accessed at `${WFE_HOST}:${WFE_PORT}` as follows:
+* List existing Docker images in CK format:
+
+```
+ $ ck list docker
+```
+
+* Build a given image locally (for example, to read CK-based interactive article):
+
+```
+ $ ck build docker:ck-ubuntu-16.04-interactive-report
+```
+
+* Run Docker image (for example, interactive paper)
+
+```
+ $ ck run docker:ck-ubuntu-16.04-interactive-report
+```
+
+Now, you should be able to view interactive article via browser:
+
+```
+ $ firefox http://localhost:3344/web?wcid=1e348bd6ab43ce8a:b0779e2a64c22907
+```
+
+You can also start a CK dashboard simply via:
+```
+ $ firefox http://localhost:3344
+```
+
+* Participate in GCC crowd-tuning:
+
+```
+ $ ck build docker:ck-ubuntu-16.04-crowdtune-gcc
+ $ ck run docker:ck-ubuntu-16.04-crowdtune-gcc
+```
+
+* Use CK as a remote web service
+
+```
+ $ ck build docker:ck-ubuntu-16.04
+ $ ck run docker:ck-ubuntu-16.04
+```
+
+Customize CK server host and ports:
 
 ```
 $ export WFE_HOST=123.456.0.78 WFE_PORT=9999 CK_PORT=3344
-$ docker run --rm -it -p ${WFE_PORT}:${CK_PORT} \
-  --env WFE_HOST=${WFE_HOST} --env WFE_PORT=${WFE_PORT} --env CK_PORT=${CK_PORT} \
-  ctuning/ck-ubuntu-16.04
+$ ck run docker:ck-ubuntu-16.04 --cmd=" -p ${WFE_PORT}:${CK_PORT} --env WFE_HOST=${WFE_HOST} --env WFE_PORT=${WFE_PORT} --env CK_PORT=${CK_PORT} --env CK_PORT=${CK_PORT}"
+
 Starting CK web service on 172.17.0.2:3344 (configured for access at 123.456.0.78:9999) ...
 ```
-
-**NB:** The `${CK_PORT}` variable must be defined but its value is inconsequential.
