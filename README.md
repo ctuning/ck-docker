@@ -81,11 +81,20 @@ Usage
  $ ck build docker:ck-ubuntu-16.04-interactive-report
 ```
 
+If you need sudo to run docker, use flag '--sudo' as following:
+```
+ $ ck build docker:ck-ubuntu-16.04-interactive-report --sudo
+```
+
 ### Run Docker image (for example, interactive paper)
 
 ```
  $ ck run docker:ck-ubuntu-16.04-interactive-report
 ```
+
+If you need sudo to run docker, use flag '--sudo' as following:
+```
+ $ ck run docker:ck-ubuntu-16.04-interactive-report --sudo
 
 Now, you should be able to view interactive article via browser:
 
