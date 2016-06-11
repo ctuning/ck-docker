@@ -43,4 +43,4 @@ EXPOSE ${CK_PORT}
 #    --host=${CK_HOST} --port=${CK_PORT} \
 #    --wfe_host=${WFE_HOST} --wfe_port=${WFE_PORT}
 
-BASH cmd
+CMD bash
