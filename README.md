@@ -194,6 +194,7 @@ in the interactive mode:
 ```
  $ ck run docker:ck-interactive-article-cmd
  $ ck replay experiment ...
+```
 
 You can build this Docker image locally via
 
