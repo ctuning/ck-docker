@@ -2,15 +2,21 @@
   "actions": {
     "build": {
       "desc": "build Docker image"
-    },
+    }, 
+    "login": {
+      "desc": "login to Docker Hub"
+    }, 
+    "push": {
+      "desc": "push a given image to the Docker Hub"
+    }, 
     "run": {
       "desc": "run Docker image"
     }
-  },
-  "copyright": "See CK COPYRIGHT.txt for copyright details",
-  "desc": "abstracting docker",
-  "developer": "Grigori Fursin",
-  "developer_email": "Grigori.Fursin@cTuning.org",
-  "developer_webpage": "http://fursin.net",
+  }, 
+  "copyright": "See CK COPYRIGHT.txt for copyright details", 
+  "desc": "abstracting docker", 
+  "developer": "Grigori Fursin", 
+  "developer_email": "Grigori.Fursin@cTuning.org", 
+  "developer_webpage": "http://fursin.net", 
   "license": "See CK LICENSE.txt for licensing details"
 }

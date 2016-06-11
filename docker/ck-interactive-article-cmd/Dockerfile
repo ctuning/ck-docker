@@ -22,6 +22,9 @@ RUN cd ${CK_ROOT} && python setup.py install && python -c "import ck.kernel as c
 
 # Install other CK modules.
 RUN ck pull repo:ck-web
+RUN ck pull repo:reproduce-ck-paper
+RUN ck pull repo:reproduce-ck-paper-large-experiments
+RUN ck pull repo:reproduce-pamela-project
 
 # Set the CK web service defaults.
 ENV CK_PORT=3344 \
@@ -40,4 +43,4 @@ EXPOSE ${CK_PORT}
 #    --host=${CK_HOST} --port=${CK_PORT} \
 #    --wfe_host=${WFE_HOST} --wfe_port=${WFE_PORT}
 
-CMD bash
+BASH cmd

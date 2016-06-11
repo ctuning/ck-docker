@@ -4,9 +4,9 @@
   }, 
   "cmd": {
     "default": {
-      "build": "-t $#CK_DOCKER_ORGANIZATION#$/$#CK_DOCKER_NAME#$ $#CK_PATH#$",
+      "build": "-t $#CK_DOCKER_ORGANIZATION#$/$#CK_DOCKER_NAME#$ $#CK_PATH#$", 
       "push": "$#CK_DOCKER_ORGANIZATION#$/$#CK_DOCKER_NAME#$", 
-      "run": "--rm -it $#CK_DOCKER_ORGANIZATION#$/$#CK_DOCKER_NAME#$",
+      "run": "--rm -it $#CK_DOCKER_ORGANIZATION#$/$#CK_DOCKER_NAME#$", 
       "run_extra_cmd": "--env CK_HOST=$#CK_HOST#$ --env WFE_HOST=$#WFE_HOST#$ --env CK_PORT=$#CK_PORT#$ --env WFE_PORT=$#WFE_PORT#$ -p $#CK_PORT#$:$#CK_PORT#$"
     }
   }, 

@@ -90,6 +90,8 @@ def call(i):
               (sudo)     - if 'yes', use sudo
 
               (cmd)      - extra CMD
+
+              (browser)  - if 'yes', start browser
             }
 
     Output: {
@@ -101,6 +103,7 @@ def call(i):
     """
 
     import os
+    import platform
 
     o=i.get('out','')
 
@@ -139,7 +142,10 @@ def call(i):
 
     # Choose organization
     org=i.get('org','')
-    if org=='': org='ctuning'
+    if org=='': 
+       org=ck.cfg.get('docker_org','')
+       if org=='':
+          org='ctuning'
 
     ecmd=i.get('cmd','')
 
@@ -147,7 +153,29 @@ def call(i):
     cc=d.get('cmd',{}).get(s,{})
     c=cc.get(func,'')
     if c=='':
-       return {'return':1, 'error':'CMD to build Docker image is not defined in the CK entry ('+duoa+')'}
+       return {'return':1, 'error':'CMD to '+func+' Docker image is not defined in the CK entry ('+duoa+')'}
+
+    # Check if Windows
+    pl=platform.system().lower()
+    ps=d.get('platform_specific',{}).get(pl,{})
+    for k in ps:
+        v=ps[k]
+
+        if v.startswith('$(') and v.endswith(')'):
+           # Run and get var
+           r=ck.gen_tmp_file({'prefix':'tmp-', 'suffix':'.tmp'})
+           if r['return']>0: return r
+           ftmp=r['file_name']
+
+           os.system(v[2:-1]+' > '+ftmp)
+
+           # Read file
+           r=ck.load_text_file({'text_file':ftmp, 
+                                 'delete_after_read':'yes'})
+           if r['return']>0: return r
+           v=r['string'].strip()
+
+        i[k]=v
 
     cmd=cc.get(func+'_extra_cmd','')
     if ecmd!='': 
@@ -174,11 +202,29 @@ def call(i):
         vv=i.get(k,'')
         if vv=='':
            vv=kd
+           i[k]=vv
 
         c=c.replace('$#'+ki+'#$',vv)
 
     if sudo=='yes':
        c='sudo '+c
+
+    # Check if has browser
+    if i.get('browser','')=='yes':
+       url=d.get('browser',{}).get('url','')
+
+       # Update vars:
+       for k in citv:
+           x=citv[k]
+
+           ki=x.get('key','')
+           vv=i.get(k,'')
+
+           url=url.replace('$#'+ki+'#$',vv)
+
+          
+       import webbrowser
+       webbrowser.open(url)
 
     if o=='con':
        ck.out('Executing command line:')
@@ -189,3 +235,48 @@ def call(i):
     r=os.system(c)
 
     return {'return':0}
+
+##############################################################################
+# login to Docker Hub
+
+def login(i):
+    """
+    Input:  {
+            }
+
+    Output: {
+              return       - return code =  0, if successful
+                                         >  0, if error
+              (error)      - error text if return > 0
+            }
+
+    """
+
+    import os
+
+    os.system('docker login')
+
+    return {'return':0}
+
+##############################################################################
+# push a given image to the Docker Hub
+
+def push(i):
+    """
+    Input:  {
+              data_uoa   - CK entry with Docker description
+              (scenario) - scenario to get CMD (default if empty)
+              (org)      - organization (default - ctuning)
+              (cmd)      - extra CMD
+            }
+
+    Output: {
+              return       - return code =  0, if successful
+                                         >  0, if error
+              (error)      - error text if return > 0
+            }
+
+    """
+
+    i['func']='push'
+    return call(i)

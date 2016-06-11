@@ -23,6 +23,7 @@ RUN cd ${CK_ROOT} && python setup.py install && python -c "import ck.kernel as c
 # Install other CK modules.
 RUN ck pull repo:ck-web
 RUN ck pull repo:reproduce-ck-paper
+RUN ck pull repo:reproduce-ck-paper-large-experiments
 RUN ck pull repo:reproduce-pamela-project
 
 # Set the CK web service defaults.

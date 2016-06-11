@@ -33,11 +33,9 @@ EXPOSE ${CK_PORT}
 # Start the CK web service.
 # Note, that container will have it's own IP,
 # that's why we need `hostname -i` below
-#CMD export CK_LOCAL_HOST=`hostname -i` ; \
-#    if [ "${CK_HOST}" = "" ]; then export CK_HOST=$CK_LOCAL_HOST ; fi ; \
-#    if [ "${WFE_HOST}" = "" ]; then export WFE_HOST=$CK_LOCAL_HOST ; fi ; \
-#    ck start web \
-#    --host=${CK_HOST} --port=${CK_PORT} \
-#    --wfe_host=${WFE_HOST} --wfe_port=${WFE_PORT}
-
-CMD bash
+CMD export CK_LOCAL_HOST=`hostname -i` ; \
+    if [ "${CK_HOST}" = "" ]; then export CK_HOST=$CK_LOCAL_HOST ; fi ; \
+    if [ "${WFE_HOST}" = "" ]; then export WFE_HOST=$CK_LOCAL_HOST ; fi ; \
+    ck start web \
+    --host=${CK_HOST} --port=${CK_PORT} \
+    --wfe_host=${WFE_HOST} --wfe_port=${WFE_PORT}

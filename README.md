@@ -54,7 +54,7 @@ Authors
 =======
 
 * Anton Lokhmotov, dividiti (UK)
-* Grigori Fursin, cTuning foundaton (France)
+* Grigori Fursin, cTuning foundation (France)
 
 License
 =======
@@ -69,60 +69,77 @@ Installation
 Usage
 =====
 
-### List existing Docker images in CK:
+### List existing Docker images in the CK:
 
 ```
  $ ck list docker
 ```
 
-### Build a given image locally (for example, to read CK-based interactive article):
+### Run a given Docker image:
 
 ```
- $ ck build docker:ck-ubuntu-16.04-interactive-report
+ $ ck run docker:ck
+```
+
+This command will download Docker image with Ubuntu and CK installed,
+and will start an interactive bash session.
+
+If you need sudo to run docker on your machine, use flag '--sudo' as following:
+```
+ $ ck run docker:ck --sudo
+```
+
+If a given image was not shared with Docker Hub, 
+you should build it locally.
+
+### Build a given image locally 
+
+```
+ $ ck build docker:ck
 ```
 
 If you need sudo to run docker, use flag '--sudo' as following:
 ```
- $ ck build docker:ck-ubuntu-16.04-interactive-report --sudo
+ $ ck build docker:ck --sudo
 ```
 
-### Run Docker image (for example, interactive paper)
-
+If build succeeded, you can run this image via
 ```
- $ ck run docker:ck-ubuntu-16.04-interactive-report
-```
-
-If you need sudo to run docker, use flag '--sudo' as following:
-```
- $ ck run docker:ck-ubuntu-16.04-interactive-report --sudo
+ $ ck run docker:ck
 ```
 
-Now, you should be able to view interactive article via browser:
+Examples
+========
+
+## Use CK web server (JSON API)
+
+We have shared CK-based web server via Docker Hub. You can run it as following:
 
 ```
- $ firefox http://localhost:3344/web?wcid=1e348bd6ab43ce8a:b0779e2a64c22907
+ $ ck run docker:ck-web-server
+
+ Starting CK web service on 0.0.0.0:3344 (configured for access at 127.0.0.1:3344) ...
 ```
 
-You can also start a CK dashboard simply via:
+On Linux you should be able to access it via any browser as following:
 ```
  $ firefox http://localhost:3344
-```
-
-### Participate in GCC crowd-tuning:
 
 ```
- $ ck build docker:ck-ubuntu-16.04-crowdtune-gcc
- $ ck run docker:ck-ubuntu-16.04-crowdtune-gcc
+
+On Windows Docker will use a different IP such as 192.168.99.100 .
+In such case you should use it to browse CK repository, i.e.
+```
+ $ firefox http://192.168.99.100:3344
 ```
 
-### Use CK as a remote web service
-
+Alternatively, you can ask CK to automatically detect this IP and start web server as following:
 ```
- $ ck build docker:ck-ubuntu-16.04
- $ ck run docker:ck-ubuntu-16.04
+ $ ck run docker:ck-web-server --browser
 ```
 
-### Customize CK server host and ports:
+If you plan to use it externally or in a workgroup, you will need to set
+external IP and port as following:
 
 ```
  $ export WFE_HOST=123.456.0.78 WFE_PORT=9999 CK_PORT=3344
@@ -131,39 +148,121 @@ You can also start a CK dashboard simply via:
 Starting CK web service on 172.17.0.2:3344 (configured for access at 123.456.0.78:9999) ...
 ```
 
-Note, that WFE_HOST and WFE_PORT is what CK web front end (dashboard)
-will use when preparing links in html pages. 
+Note, that WFE_HOST is external IP and WFE_PORT is external port 
+which CK web front end (dashboard) will use when preparing links 
+in html pages. CK_HOST is internal host (can be left blank)
+and CK_PORT is internal port.
 
-### Create your own CK-based Docker image
+Finally, if you do not have CK installed, you can run Docker image 
+with the CK web server directly:
+```
+ $ docker run --rm -p 3344:3344 ctuning/ck-web-server
+```
+
+and you can customize it as following:
+```
+ $ docker run --rm --env CK_HOST=0.0.0.0 --env WFE_HOST=localhost --env CK_PORT=3344 --env WFE_PORT=3344 -p 3344:3344 ctuning/ck-web-server
+```
+
+## Browse interactive article and reproduce experiments
+
+We converted parts of our following papers and their results into CK-based interactive articles
+(to let the community reproduce our results and build upon them):
+* http://arxiv.org/abs/1506.06256 (CPC'15)
+* https://hal.inria.fr/hal-01054763 (JSP'14)
+* http://bit.ly/ck-date16 (DATE'16)
+* http://bit.ly/ck-multiprog16 (MULTIPROG'16)
+
+You can download related Docker image and browse it as following:
+```
+ $ ck run docker:ck-interactive-article --browser
+```
+
+Alternatively, you can run it manually via docker:
+```
+ $ docker run --rm ctuning/ck-interactive-article
+ $ firefox http://localhost:3344/web?wcid=1e348bd6ab43ce8a:b0779e2a64c22907
+```
+
+On Windows, you will need to change localhost to IP reported via 'docker-machine ip'
+as described in the previous sub-section.
+
+You can replay experiments from above papers (by copy/pasting replay CMD
+from the web dashboard) on your machine  by running above Docker image 
+in the interactive mode:
+
+```
+ $ ck run docker:ck-interactive-article-cmd
+ $ ck replay experiment ...
+
+You can build this Docker image locally via
+
+```
+ $ ck build docker:ck-interactive-article
+```
+
+If you need sudo to run docker, use flag '--sudo' as following:
+```
+ $ ck build docker:ck-interactive-article --sudo
+```
+
+## Participate in GCC crowd-tuning:
+
+You can participate in GCC crowd-tuning (i.e. collaboratively
+tuning optimization heuristic of GCC and sharing experimental results
+via public repository http://cknowledge.org/repo as following:
+
+```
+ $ ck build docker:ck-crowdtune-gcc
+ $ ck run docker:ck-crowdtune-gcc
+```
+
+However, we suggest to use CK natively. In such, case you will
+be able to take advantage of your latest environment and GCC compiler
+as following:
+
+```
+ $ ck pull repo:ck-crowdtuning
+ $ ck crowdtune program --gcc
+```
+
+## Create your own CK-based Docker image
 
 Select the most close Docker image in CK and copy it to a new CK entry:
 
 ```
- $ ck cp docker:ck-ubuntu-16.04-interactive-report :my-new-image
+ $ ck cp docker:ck-ubuntu-16.04-interactive-report :my-cool-image
 ```
 
 Find its path:
 
 ```
- $ ck find docker:my-new-image
+ $ ck find docker:my-cool-image
 ```
 
 Edit Dockerfile and .cm/meta.json in this directory.
 
-When ready, build your image
+When ready, build your image (and specify your own organization,
+to avoid using 'ctuning' as default)
 
 ```
- $ ck build docker:my-new-image
+ $ ck build docker:my-cool-image --org=my-org
 ```
 
 and then run it
 
 ```
- $ ck run docker:my-new-image
+ $ ck run docker:my-cool-image
+```
+
+You can also login to the Docker Hub and push your image 
+to your account via
+```
+ $ ck login docker
+ $ ck push docker:my-cool-image --org=my-org 
 ```
 
 That's all!
-
 
 Misc notes
 ==========
