@@ -95,6 +95,7 @@ If you need sudo to run docker, use flag '--sudo' as following:
 If you need sudo to run docker, use flag '--sudo' as following:
 ```
  $ ck run docker:ck-ubuntu-16.04-interactive-report --sudo
+```
 
 Now, you should be able to view interactive article via browser:
 
