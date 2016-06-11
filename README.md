@@ -8,6 +8,7 @@ beta, relatively stable
 Prerequisites
 =============
 
+## Linux
 ### Install Docker
 
 To install Docker, please refer to the official 
@@ -23,6 +24,31 @@ This message shows that your installation appears to be working correctly.
 **NB:** To run Docker without `sudo` on Linux, create a `docker` user group 
 (e.g. see instructions for Ubuntu [here](https://docs.docker.com/engine/installation/linux/ubuntulinux/#create-a-docker-group).
 
+## Windows
+
+### Install Oracle VirtualBox
+
+Download and install it from https://www.virtualbox.org/wiki/Downloads
+
+Note, that if you plan to use devices connected via USB
+(for example, access Android devices via ADB), you also need 
+to install VirtualBox Extension Pack (you can download it from above page).
+
+### Install Docker
+
+Follow these guidelines:
+* https://docs.docker.com/engine/installation/windows
+
+Note that if you plan to use USB devices, you need
+to update "default" VirtualBox image (created by Docker
+after installation) and enable USB (USB2 or USB3).
+
+### Obtain Docker IP
+You can obtain internal IP of the docker machine
+(required for CK web services) using the following command:
+```
+ $ docker-machine ip
+```
 
 Authors
 =======
@@ -124,3 +150,14 @@ and then run it
 ```
 
 That's all!
+
+
+Misc notes
+==========
+
+If you want to access devices connected via USB from Docker image, 
+you need to run Docker as following:
+
+```
+ $ docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb ...
+```
