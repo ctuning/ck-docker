@@ -214,8 +214,11 @@ tuning optimization heuristic of GCC and sharing experimental results
 via public repository http://cknowledge.org/repo as following:
 
 ```
- $ ck build docker:ck-crowdtune-gcc
  $ ck run docker:ck-crowdtune-gcc
+
+or
+
+ $ docker run ctuning/ck-crowdtune-gcc
 ```
 
 However, we suggest to use CK natively. In such, case you will
@@ -225,6 +228,18 @@ as following:
 ```
  $ ck pull repo:ck-crowdtuning
  $ ck crowdtune program --gcc
+```
+
+## Participate in LLVM crowd-tuning
+
+Similar to GCC crowd-tuning you can collaboratively tune LLVM optimization
+heuristic on your machine via
+```
+ $ ck run docker:ck-crowdtune-llvm
+
+  or
+
+ $ docker run ctuning/ck-crowdtune-llvm
 ```
 
 ## Create your own CK-based Docker image

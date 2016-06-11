@@ -5,7 +5,7 @@ MAINTAINER Grigori Fursin <Grigori.Fursin@cTuning.org>
 # Install standard packages.
 RUN apt-get update && apt-get install -y \
     python-all \
-    git
+    git bzip2 sudo wget zip
 
 # Install extra deps for imaging
 RUN apt-get install -y libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev python-pillow

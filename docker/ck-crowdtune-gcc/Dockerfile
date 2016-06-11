@@ -4,7 +4,7 @@ MAINTAINER Grigori Fursin <Grigori.Fursin@cTuning.org>
 # Install standard packages.
 RUN apt-get update && apt-get install -y \
     python-all \
-    git
+    git bzip2 sudo wget zip
 
 # Install extra deps for imaging
 RUN apt-get install -y libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev python-pillow
@@ -23,10 +23,12 @@ RUN git clone https://github.com/ctuning/ck.git ${CK_ROOT}
 RUN cd ${CK_ROOT} && python setup.py install && python -c "import ck.kernel as ck"
 
 # Install other CK modules.
+RUN ck  version
 RUN ck pull repo:ck-web
 RUN ck pull repo:ck-crowdtuning
 
 # Start the CK web service.
 # Note, that container will have it's own IP,
 # that's why we need `hostname -i` below
-CMD ck crowdsource program.optimization --gcc --user=docker --quiet
+CMD ck crowdsource program.optimization --gcc --user=docker --quiet --skip_gpu_info --platform_init_uoa=generic-linux
+#CMD bash

@@ -1,5 +1,4 @@
 FROM ubuntu:16.04
-MAINTAINER Anton Lokhmotov <anton@dividiti.com>
 MAINTAINER Grigori Fursin <Grigori.Fursin@cTuning.org>
 
 # Install standard packages.
@@ -9,6 +8,9 @@ RUN apt-get update && apt-get install -y \
 
 # Install extra deps for imaging
 RUN apt-get install -y libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev python-pillow
+
+# Install LLVM to crowdtune
+RUN apt-get install -y clang
 
 # Install the core Collective Knowledge (CK) module.
 ENV CK_ROOT=/ck-master \
@@ -22,20 +24,10 @@ RUN cd ${CK_ROOT} && python setup.py install && python -c "import ck.kernel as c
 
 # Install other CK modules.
 RUN ck pull repo:ck-web
-
-# Set the CK web service defaults.
-ENV CK_PORT=3344 \
-    WFE_PORT=3344 
-
-# Expose CK port
-EXPOSE ${CK_PORT}
+RUN ck pull repo:ck-crowdtuning
 
 # Start the CK web service.
 # Note, that container will have it's own IP,
 # that's why we need `hostname -i` below
-CMD export CK_LOCAL_HOST=`hostname -i` ; \
-    if [ "${CK_HOST}" = "" ]; then export CK_HOST=$CK_LOCAL_HOST ; fi ; \
-    if [ "${WFE_HOST}" = "" ]; then export WFE_HOST=$CK_LOCAL_HOST ; fi ; \
-    ck start web \
-    --host=${CK_HOST} --port=${CK_PORT} \
-    --wfe_host=${WFE_HOST} --wfe_port=${WFE_PORT}
+CMD ck crowdsource program.optimization --llvm --user=docker --quiet --skip_gpu_info --platform_init_uoa=generic-linux
+#CMD bash
