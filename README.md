@@ -207,7 +207,7 @@ If you need sudo to run docker, use flag '--sudo' as following:
  $ ck build docker:ck-interactive-article --sudo
 ```
 
-## Participate in GCC crowd-tuning:
+## Participate in GCC crowd-tuning
 
 You can participate in GCC crowd-tuning (i.e. collaboratively
 tuning optimization heuristic of GCC and sharing experimental results
