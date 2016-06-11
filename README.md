@@ -131,6 +131,9 @@ You can also start a CK dashboard simply via:
 Starting CK web service on 172.17.0.2:3344 (configured for access at 123.456.0.78:9999) ...
 ```
 
+Note, that WFE_HOST and WFE_PORT is what CK web front end (dashboard)
+will use when preparing links in html pages. 
+
 ### Create your own CK-based Docker image
 
 Select the most close Docker image in CK and copy it to a new CK entry:
