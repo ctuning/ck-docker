@@ -9,7 +9,7 @@ or share your projects for [Artifact Evaluation](http://cTuning.org/ae)
 at conferences. You can find several such Docker images prepared 
 via CK [here](https://hub.docker.com/u/ctuning).
 If you have questions and comments, feel free to get
-in touch with [https://groups.google.com/forum/#!forum/collective-knowledge the community]!
+in touch with [the community](https://groups.google.com/forum/#!forum/collective-knowledge the community)!
 
 Status
 ======
