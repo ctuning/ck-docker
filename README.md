@@ -1,9 +1,19 @@
 Automating creation and execution of Docker images via CK
 =========================================================
 
+This repository helps you automate various Docker tasks
+including "build", "run" and "push" via CK. Useful
+to build and deploy CK-powered Docker images 
+for example to crowdsource autotuning and other experiments,
+or share your projects for [Artifact Evaluation](http://cTuning.org/ae)
+at conferences. You can find several such Docker images prepared 
+via CK [here](https://hub.docker.com/u/ctuning).
+If you have questions and comments, feel free to get
+in touch with [https://groups.google.com/forum/#!forum/collective-knowledge the community]!
+
 Status
 ======
-beta, relatively stable
+Stable repository
 
 Prerequisites
 =============
