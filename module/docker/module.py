@@ -242,6 +242,7 @@ def call(i):
 def login(i):
     """
     Input:  {
+              (sudo) - if 'yes', add sudo
             }
 
     Output: {
@@ -254,7 +255,11 @@ def login(i):
 
     import os
 
-    os.system('docker login')
+    s='docker login'
+    if i.get('sudo','')=='yes':
+       s='sudo '+s
+
+    os.system(s)
 
     return {'return':0}
 
