@@ -1,6 +1,10 @@
 Automating creation and execution of Docker images via CK
 =========================================================
 
+[![logo](https://github.com/ctuning/ck-guide-images/blob/master/logo-powered-by-ck.png)](http://cKnowledge.org)
+[![logo](https://github.com/ctuning/ck-guide-images/blob/master/logo-validated-by-the-community-simple.png)](http://cTuning.org)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
 This repository helps you automate various Docker tasks
 including "build", "run" and "push" via CK. Useful
 to build and deploy CK-powered Docker images 
@@ -299,3 +303,7 @@ you need to run Docker as following:
 ```
  $ docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb ...
 ```
+
+Feedback
+========
+* https://groups.google.com/forum/#!forum/collective-knowledge
