@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     git bzip2 sudo wget zip
 
 # Install extra deps for imaging
-RUN apt-get install -y libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev python-pillow
+RUN apt-get install -y libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev python-pillow build-essential
 
 # Install the core Collective Knowledge (CK) module.
 ENV CK_ROOT=/ck-master \
