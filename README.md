@@ -98,7 +98,7 @@ Usage
 This command will download Docker image with Ubuntu and CK installed,
 and will start an interactive bash session.
 
-If you need sudo to run docker on your machine, use flag '--sudo' as following:
+If you need sudo to run docker on your machine, use flag '--sudo' as follows:
 ```
  $ ck run docker:ck --sudo
 ```
@@ -112,7 +112,7 @@ you should build it locally.
  $ ck build docker:ck
 ```
 
-If you need sudo to run docker, use flag '--sudo' as following:
+If you need sudo to run docker, use flag '--sudo' as follows:
 ```
  $ ck build docker:ck --sudo
 ```
@@ -127,7 +127,7 @@ Examples
 
 ## Use CK web server (JSON API)
 
-We have shared CK-based web server via Docker Hub. You can run it as following:
+We have shared CK-based web server via Docker Hub. You can run it as follows:
 
 ```
  $ ck run docker:ck-web-server
@@ -135,7 +135,7 @@ We have shared CK-based web server via Docker Hub. You can run it as following:
  Starting CK web service on 0.0.0.0:3344 (configured for access at 127.0.0.1:3344) ...
 ```
 
-On Linux you should be able to access it via any browser as following:
+On Linux you should be able to access it via any browser as follows:
 ```
  $ firefox http://localhost:3344
 
@@ -147,13 +147,13 @@ In such case you should use it to browse CK repository, i.e.
  $ firefox http://192.168.99.100:3344
 ```
 
-Alternatively, you can ask CK to automatically detect this IP and start web server as following:
+Alternatively, you can ask CK to automatically detect this IP and start web server as follows:
 ```
  $ ck run docker:ck-web-server --browser
 ```
 
 If you plan to use it externally or in a workgroup, you will need to set
-external IP and port as following:
+external IP and port as follows:
 
 ```
  $ export WFE_HOST=123.456.0.78 WFE_PORT=9999 CK_PORT=3344
@@ -173,7 +173,7 @@ with the CK web server directly:
  $ docker run --rm -p 3344:3344 ctuning/ck-web-server
 ```
 
-and you can customize it as following:
+and you can customize it as follows:
 ```
  $ docker run --rm --env CK_HOST=0.0.0.0 --env WFE_HOST=localhost --env CK_PORT=3344 --env WFE_PORT=3344 -p 3344:3344 ctuning/ck-web-server
 ```
@@ -187,7 +187,7 @@ We converted parts of our following papers and their results into CK-based inter
 * http://bit.ly/ck-date16 (DATE'16)
 * http://bit.ly/ck-multiprog16 (MULTIPROG'16)
 
-You can download related Docker image and browse it as following:
+You can download related Docker image and browse it as follows:
 ```
  $ ck run docker:ck-interactive-article --browser
 ```
@@ -216,7 +216,7 @@ You can build this Docker image locally via
  $ ck build docker:ck-interactive-article
 ```
 
-If you need sudo to run docker, use flag '--sudo' as following:
+If you need sudo to run docker, use flag '--sudo' as follows:
 ```
  $ ck build docker:ck-interactive-article --sudo
 ```
@@ -225,7 +225,7 @@ If you need sudo to run docker, use flag '--sudo' as following:
 
 You can participate in GCC crowd-tuning (i.e. collaboratively
 tuning optimization heuristic of GCC and sharing experimental results
-via public repository http://cknowledge.org/repo as following:
+via public repository http://cknowledge.org/repo as follows:
 
 ```
  $ ck run docker:ck-crowdtune-gcc
@@ -237,7 +237,7 @@ or
 
 However, we suggest to use CK natively. In such, case you will
 be able to take advantage of your latest environment and GCC compiler
-as following:
+as follows:
 
 ```
  $ ck pull repo:ck-crowdtuning
@@ -298,7 +298,7 @@ Misc notes
 ==========
 
 If you want to access devices connected via USB from Docker image, 
-you need to run Docker as following:
+you need to run Docker as follows:
 
 ```
  $ docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb ...
