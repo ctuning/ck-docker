@@ -92,6 +92,8 @@ def call(i):
               (cmd)      - extra CMD
 
               (browser)  - if 'yes', start browser
+
+              (filename) - file to save/load external Docker image (data_uoa.tar by default)
             }
 
     Output: {
@@ -114,6 +116,9 @@ def call(i):
     duoa=i.get('data_uoa','')
     if duoa=='':
        return {'return':1, 'error':'please, specify CK entry with Docker description as following "ck build docker:{CK entry}"'}
+
+    filename=i.get('filename','')
+    if filename=='': filename=duoa+'.tar'
 
     # Load CK entry
     r=ck.access({'action':'load',
@@ -185,6 +190,7 @@ def call(i):
     c=c.replace('$#CK_DOCKER_ORGANIZATION#$',org)
     c=c.replace('$#CK_DOCKER_NAME#$',duoa)
     c=c.replace('$#CK_PATH#$',p)
+    c=c.replace('$#CK_DOCKER_FILE#$',filename)
 
     if cmd!='':
        c=cmd+' '+c
@@ -222,7 +228,6 @@ def call(i):
 
            url=url.replace('$#'+ki+'#$',vv)
 
-          
        import webbrowser
        webbrowser.open(url)
 
@@ -284,4 +289,50 @@ def push(i):
     """
 
     i['func']='push'
+    return call(i)
+
+##############################################################################
+# save Docker image (for example to share via external repositories and digital libraries)
+
+def save(i):
+    """
+    Input:  {
+              data_uoa   - CK entry with Docker description
+              (scenario) - scenario to get CMD (default if empty)
+              (cmd)      - extra CMD
+              (filename) - file to save image (data_uoa.tar by default)
+            }
+
+    Output: {
+              return       - return code =  0, if successful
+                                         >  0, if error
+              (error)      - error text if return > 0
+            }
+
+    """
+
+    i['func']='save'
+    return call(i)
+
+##############################################################################
+# import external Docker image (tar file)
+
+def ximport(i):
+    """
+    Input:  {
+              data_uoa   - CK entry with Docker description
+              (scenario) - scenario to get CMD (default if empty)
+              (cmd)      - extra CMD
+              (filename) - file to load image (data_uoa.tar by default)
+            }
+
+    Output: {
+              return       - return code =  0, if successful
+                                         >  0, if error
+              (error)      - error text if return > 0
+            }
+
+    """
+
+    i['func']='import'
     return call(i)

@@ -3,6 +3,9 @@
     "build": {
       "desc": "build Docker image"
     }, 
+    "import": {
+      "desc": "import external Docker image (tar file)"
+    }, 
     "login": {
       "desc": "login to Docker Hub"
     }, 
@@ -11,8 +14,14 @@
     }, 
     "run": {
       "desc": "run Docker image"
+    }, 
+    "save": {
+      "desc": "save Docker image (for example to share via external repositories and digital libraries)"
     }
-  }, 
+  },
+  "actions_redirect": {
+    "import": "ximport"
+  },
   "copyright": "See CK COPYRIGHT.txt for copyright details", 
   "desc": "abstracting docker", 
   "developer": "Grigori Fursin", 
