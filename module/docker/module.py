@@ -118,7 +118,7 @@ def call(i):
        return {'return':1, 'error':'please, specify CK entry with Docker description as following "ck build docker:{CK entry}"'}
 
     filename=i.get('filename','')
-    if filename=='': filename=duoa+'.tar'
+    if filename=='': filename='docker-image-'+duoa+'.tar'
 
     # Load CK entry
     r=ck.access({'action':'load',
