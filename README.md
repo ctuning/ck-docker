@@ -66,6 +66,10 @@ You can obtain internal IP of the docker machine
  $ docker-machine ip
 ```
 
+Maintainers
+===========
+* [dividiti](http://dividiti.com)
+
 Authors
 =======
 
