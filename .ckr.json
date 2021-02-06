@@ -1,10 +1,11 @@
 {
-  "data_uid": "18bb3d4130a4aaf9", 
-  "data_name": "ck-docker", 
+  "data_alias": "ck-docker",
+  "data_name": "ck-docker",
+  "data_uid": "18bb3d4130a4aaf9",
+  "data_uoa": "ck-docker",
   "dict": {
-    "url": "https://github.com/ctuning/ck-docker", 
-    "shared": "git"
-  }, 
-  "data_alias": "ck-docker", 
-  "data_uoa": "ck-docker"
+    "desc": "Unified CK JSON API to automate Docker functions (see the <a href=\"https://github.com/ctuning/ck-request-asplos18-caffe-intel\">real use case</a>).",
+    "shared": "git",
+    "url": "https://github.com/ctuning/ck-docker"
+  }
 }

@@ -1,7 +1,9 @@
 Automating creation and execution of Docker images via CK
 =========================================================
 
-**All CK components for AI and ML are now collected in [one repository](https://github.com/ctuning/ai)!**
+**All CK components can be found at [cKnowledge.io](https://cKnowledge.io) and in [one GitHub repository](https://github.com/ctuning/ai)!**
+
+*This project is hosted by the [cTuning foundation](https://cTuning.org).*
 
 [![compatibility](https://github.com/ctuning/ck-guide-images/blob/master/ck-compatible.svg)](https://github.com/ctuning/ck)
 [![automation](https://github.com/ctuning/ck-guide-images/blob/master/ck-artifact-automated-and-reusable.svg)](http://cTuning.org/ae)
@@ -68,15 +70,11 @@ You can obtain internal IP of the docker machine
  $ docker-machine ip
 ```
 
-Maintainers
-===========
-* [dividiti](http://dividiti.com)
-
 Authors
 =======
 
-* Anton Lokhmotov, dividiti (UK)
-* Grigori Fursin, cTuning foundation (France)
+* [Grigori Fursin](https://fursin.net), cTuning foundation
+* Anton Lokhmotov, dividiti
 
 License
 =======
