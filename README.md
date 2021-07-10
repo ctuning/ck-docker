@@ -1,7 +1,7 @@
 Automating creation and execution of Docker images via CK
 =========================================================
 
-**All CK components can be found at [cKnowledge.io](https://cKnowledge.io) and in [one GitHub repository](https://github.com/ctuning/ai)!**
+**All CK components can be found at [cKnowledge.io](https://cKnowledge.io) and in [one GitHub repository](https://github.com/ctuning/ck-mlops)!**
 
 *This project is hosted by the [cTuning foundation](https://cTuning.org).*
 

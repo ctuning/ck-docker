@@ -2,7 +2,7 @@
   "cmd": {
     "default": {
       "build": "-t $#CK_DOCKER_ORGANIZATION#$/$#CK_DOCKER_NAME#$ $#CK_PATH#$",
-      "push": "$#CK_DOCKER_ORGANIZATION#$/$#CK_DOCKER_NAME#$", 
+      "push": "$#CK_DOCKER_ORGANIZATION#$/$#CK_DOCKER_NAME#$",
       "run": "--rm -it $#CK_DOCKER_ORGANIZATION#$/$#CK_DOCKER_NAME#$",
       "run_extra_cmd": "--env CK_HOST=0.0.0.0 --env WFE_HOST=localhost --env CK_PORT=$#CK_PORT#$ --env WFE_PORT=$#CK_PORT#$ -p $#CK_PORT#$:$#CK_PORT#$"
     }
@@ -12,5 +12,12 @@
       "default": "3344",
       "key": "CK_PORT"
     }
-  }
+  },
+  "tested": [
+    {
+      "email": "grigori@octoml.ai",
+      "iso_datetime": "2021-05-26T09:46:12.635376",
+      "name": "Grigori Fursin"
+    }
+  ]
 }
